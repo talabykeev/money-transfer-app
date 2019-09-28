@@ -20,5 +20,4 @@ public class UserController {
     public User findOne(@PathVariable Long id) {
         return userRepository.findById(id).get();
     }
-
 }
