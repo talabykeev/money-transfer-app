@@ -1,0 +1,2 @@
+INSERT INTO `money-transfer-app`.users (id, first_name, last_name, location) VALUES (5, 'Nursultan', 'Turdaliev', 'Seattle');
+INSERT INTO `money-transfer-app`.users (id, first_name, last_name, location) VALUES (6, 'Nurali', 'Akimov', 'Boston');
