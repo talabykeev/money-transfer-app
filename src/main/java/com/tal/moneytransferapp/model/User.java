@@ -1,6 +1,9 @@
 package com.tal.moneytransferapp.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
@@ -17,8 +20,9 @@ public class User {
     @Column(length = 50, nullable = false)
     private String lastName;
 
-    @Column(length = 50, nullable = false)
-    private String location;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<Transaction> transactions;
 
     public String getFirstName() {
         return firstName;
@@ -44,11 +48,11 @@ public class User {
         this.id = id;
     }
 
-    public String getLocation() {
-        return location;
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setTransactions(List<Transaction> transactions) {
+        this.transactions = transactions;
     }
 }

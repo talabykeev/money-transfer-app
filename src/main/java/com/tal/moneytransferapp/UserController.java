@@ -3,10 +3,8 @@ package com.tal.moneytransferapp;
 import com.tal.moneytransferapp.model.User;
 import com.tal.moneytransferapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 
 @RestController
@@ -19,6 +17,18 @@ public class UserController {
     @GetMapping("/{id}")
     public User findOne(@PathVariable Long id) {
         return userRepository.findById(id).get();
+    }
+
+
+    @GetMapping("/")
+    public Iterable <User> all() {
+        return userRepository.findAll();
+    }
+
+    @PostMapping(value = "/api/users/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public User create() {
+        return new User(100000, "New Photo");
     }
 
 }
