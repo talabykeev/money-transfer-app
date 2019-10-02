@@ -24,6 +24,10 @@ public class Transaction {
     @JsonBackReference
     private User user;
 
+    @ManyToOne
+    @JoinColumn(name = "currency_id", nullable = true)
+    private Currency currency;
+
 
     public String getTransactionId() {
         return transactionId;

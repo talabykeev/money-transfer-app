@@ -3,6 +3,7 @@ package com.tal.moneytransferapp;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.tal.moneytransferapp.model.Transaction;
 import com.tal.moneytransferapp.model.User;
 import com.tal.moneytransferapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,8 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Optional;
 
 
 @RestController
@@ -26,7 +29,6 @@ public class UserController {
     public User findOne(@PathVariable Long id) {
         return userRepository.findById(id).get();
     }
-
 
     @GetMapping("/")
     public Iterable <User> all() {
@@ -63,5 +65,21 @@ public class UserController {
         return savedUser;
     }
 
+    @GetMapping("/{id}/transactions")
+    public ResponseEntity<Iterable<Transaction>> findTransactionByUser(@PathVariable Long id) {
+
+        Optional<User> userOptional = userRepository.findById(id);
+        if(!userOptional.isPresent()) {
+            return ResponseEntity.notFound().build();
+        }
+
+        User user = userOptional.get();
+        return ResponseEntity.ok(user.getTransactions());
+    }
+
+   @GetMapping(path = {"/search", "/search/"})
+    public Iterable<User> search(@RequestParam String firstName) {
+        return userRepository.findByFirstName(firstName);
+   }
 
 }
