@@ -24,6 +24,9 @@ public class User {
     @JsonManagedReference
     private List<Transaction> transactions;
 
+    @Column(length = 50, nullable = false)
+    private String status;
+
     public String getFirstName() {
         return firstName;
     }
@@ -54,5 +57,13 @@ public class User {
 
     public void setTransactions(List<Transaction> transactions) {
         this.transactions = transactions;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

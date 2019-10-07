@@ -1,7 +1,8 @@
-package com.tal.moneytransferapp.repository;
+package com.tal.moneytransferapp;
 
 
 import com.tal.moneytransferapp.model.Transaction;
+import com.tal.moneytransferapp.repository.TransactionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +43,7 @@ public class TransactionController {
         Transaction transaction = optionalTransaction.get();
         return ResponseEntity.ok(transaction);
     }
+
 
 }
 

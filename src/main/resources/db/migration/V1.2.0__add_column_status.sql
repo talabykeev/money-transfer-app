@@ -1,0 +1,2 @@
+ALTER TABLE users
+  ADD status VARCHAR(50);
