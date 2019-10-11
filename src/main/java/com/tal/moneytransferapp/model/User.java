@@ -27,6 +27,12 @@ public class User {
     @Column(length = 50, nullable = false)
     private String status;
 
+    public User(String askar, String akaev) {
+    }
+
+    public User() {
+    }
+
     public String getFirstName() {
         return firstName;
     }
